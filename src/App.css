@@ -1,0 +1,200 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 22px max(24px, calc((100% - 1080px) / 2));
+  background: #ffffff;
+  border-bottom: 1px solid #e3e9df;
+}
+
+header h1 {
+  margin: 0;
+  color: #176b4a;
+  font-size: 25px;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+header nav button {
+  padding: 10px 14px;
+  color: #526259;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+header nav button:hover {
+  background: #f0f4ec;
+}
+
+header nav button[aria-pressed="true"] {
+  color: #176b4a;
+  background: #eaf2e5;
+  border-color: #dce8d4;
+}
+
+main {
+  width: min(1080px, calc(100% - 40px));
+  margin: 38px auto;
+}
+
+main section {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e3e9df;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px #26352e0a;
+}
+
+main h2 {
+  margin-top: 0;
+  font-size: 27px;
+}
+
+main section > p {
+  color: #68766d;
+  line-height: 1.6;
+}
+
+label {
+  display: block;
+  margin: 22px 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input[type="date"] {
+  padding: 10px 12px;
+  color: #26352e;
+  background: #ffffff;
+  border: 1px solid #cfd9cd;
+  border-radius: 8px;
+}
+
+.lista-salas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.lista-salas article {
+  padding: 20px;
+  background: #fbfcf9;
+  border: 1px solid #e3e9df;
+  border-radius: 12px;
+}
+
+.lista-salas article h3 {
+  margin: 0 0 8px;
+  color: #176b4a;
+  font-size: 19px;
+}
+
+.lista-salas article h4 {
+  margin-bottom: 10px;
+}
+
+.lista-horarios {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.lista-horarios button,
+li button {
+  padding: 9px 10px;
+  color: #176b4a;
+  background: #edf4e8;
+  border: 1px solid #dce8d4;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.lista-horarios button:hover:not(:disabled),
+li button:hover {
+  color: #ffffff;
+  background: #176b4a;
+}
+
+.lista-horarios button:disabled {
+  color: #858d86;
+  background: #ecefeb;
+  border-color: #e1e5df;
+  cursor: not-allowed;
+}
+
+p[role="status"] {
+  padding: 11px 14px;
+  color: #176b4a;
+  background: #edf5e8;
+  border-radius: 8px;
+}
+
+ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  background: #fbfcf9;
+  border: 1px solid #e3e9df;
+  border-radius: 9px;
+}
+
+li button {
+  margin-left: auto;
+  color: #9b5145;
+  background: #fbefec;
+  border-color: #f0dcd6;
+}
+
+li button:hover {
+  background: #a64e40;
+}
+
+@media (max-width: 650px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  header nav button {
+    padding: 9px 10px;
+  }
+
+  main {
+    width: calc(100% - 24px);
+    margin: 20px auto;
+  }
+
+  main section {
+    padding: 20px;
+  }
+
+  .lista-salas {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-horarios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
