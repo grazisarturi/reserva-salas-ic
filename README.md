@@ -17,7 +17,7 @@ Estudantes que procuram um espaço para estudar individualmente ou em grupo.
 - Consultar salas e horários por data.
 - Reservar um horário disponível de uma hora.
 - Impedir reservas em horários passados e conflitos de horário.
-- Limitar cada perfil a duas reservas futuras.
+- Limitar a duas as reservas futuras salvas neste navegador.
 - Consultar e cancelar reservas.
 - Salvar as reservas no navegador usando `localStorage`.
 - Navegar entre as seções Disponibilidade, Minhas reservas e Sobre.
@@ -43,3 +43,12 @@ Como possibilidade futura, a aplicação poderia exibir anúncios ou conteúdos 
 
    ```bash
    npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse no navegador o endereço exibido pelo Vite, geralmente `http://localhost:5173/`.
