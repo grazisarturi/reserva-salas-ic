@@ -52,3 +52,24 @@ Como possibilidade futura, a aplicação poderia exibir anúncios ou conteúdos 
    ```
 
 4. Acesse no navegador o endereço exibido pelo Vite, geralmente `http://localhost:5173/`.
+
+## Integração Contínua
+
+### Ferramenta utilizada
+
+O pipeline de Integração Contínua é executado pelo GitHub Actions.
+
+### Quando o pipeline é executado
+
+O workflow é executado automaticamente quando há um `push` para a branch `main` ou um pull request direcionado a ela.
+
+### Etapas do pipeline
+
+1. Baixa o código do repositório.
+2. Configura o Node.js 24.
+3. Instala as dependências com `npm ci`.
+4. Executa `npm run build` para verificar se a aplicação pode ser compilada.
+
+### Como verificar uma execução
+
+Acesse a aba **Actions** do repositório e selecione uma execução do workflow **CI**. Uma execução concluída com sucesso aparece como verde; se falhar, os detalhes do erro ficam disponíveis nos logs.
