@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 const salas = [
@@ -46,6 +46,15 @@ function carregarReservas() {
   }
 }
 
+function salvarReservas(reservasAtuais) {
+  try {
+    localStorage.setItem(chaveReservas, JSON.stringify(reservasAtuais));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function horarioJaPassou(data, horario) {
   return new Date(`${data}T${horario}:00`) <= new Date();
 }
@@ -68,19 +77,11 @@ function App() {
   const [reservas, setReservas] = useState(carregarReservas);
   const [mensagem, setMensagem] = useState('');
 
-  useEffect(() => {
-    try {
-      localStorage.setItem(chaveReservas, JSON.stringify(reservas));
-    } catch {
-      setMensagem('Não foi possível salvar as reservas neste navegador.');
-    }
-  }, [reservas]);
-
   const reservasFuturas = reservas.filter(
     (reserva) => new Date(`${reserva.data}T${reserva.horario}:00`) > new Date()
   );
 
-  function reservar(sala, horario) {
+  function reservar(sala, horario, idReserva) {
     if (!dataReserva) {
       setMensagem('Escolha uma data antes de reservar.');
       return;
@@ -114,23 +115,38 @@ function App() {
     }
 
     const novaReserva = {
-      id: Date.now(),
+      id: idReserva,
       salaId: sala.id,
       nomeSala: sala.nome,
       data: dataReserva,
       horario,
     };
 
-    setReservas((reservasAtuais) => [...reservasAtuais, novaReserva]);
+    const reservasAtualizadas = [...reservas, novaReserva];
+    setReservas(reservasAtualizadas);
+
+    if (!salvarReservas(reservasAtualizadas)) {
+      setMensagem('Não foi possível salvar as reservas neste navegador.');
+      return;
+    }
+
     setMensagem(`${sala.nome} reservada para as ${horario}.`);
   }
 
   function cancelarReserva(id) {
-    setReservas((reservasAtuais) =>
-      reservasAtuais.filter((reserva) => reserva.id !== id)
-    );
-    setMensagem('Reserva cancelada. O horário está livre novamente.');
+  const reservasAtualizadas = reservas.filter(
+    (reserva) => reserva.id !== id
+  );
+
+  setReservas(reservasAtualizadas);
+
+  if (!salvarReservas(reservasAtualizadas)) {
+    setMensagem('Não foi possível salvar as reservas neste navegador.');
+    return;
   }
+
+  setMensagem('Reserva cancelada. O horário está livre novamente.');
+}
 
   function alterarData(evento) {
     setDataReserva(evento.target.value);
@@ -212,7 +228,7 @@ function App() {
                           key={horario}
                           type="button"
                           disabled={ocupado || passou}
-                          onClick={() => reservar(sala, horario)}
+                          onClick={() => reservar(sala, horario, Date.now())}
                         >
                           {horario} —{' '}
                           {ocupado
