@@ -85,3 +85,25 @@ Acesse: https://grazisarturi.github.io/reserva-salas-ic/
 O workflow `.github/workflows/monitoramento.yml` verifica a disponibilidade do site a cada seis horas. A verificação também pode ser iniciada manualmente pela aba **Actions**, usando a opção **Run workflow**.
 
 O job usa `curl` para acessar a página e falha se a requisição HTTP não for bem-sucedida. O histórico das verificações pode ser consultado na aba **Actions**, no workflow **Monitoramento do site**.
+
+## Evidências do trabalho
+
+### Pipeline CI/CD
+
+![Pipeline CI/CD](docs/evidencias/pipeline-ci.png)
+
+### Análise do CodeQL
+
+![Execução do CodeQL](docs/evidencias/codeql.png)
+
+### Monitoramento do site
+
+![Monitoramento do site](docs/evidencias/monitoramento.png)
+
+### GitHub Pages
+
+![Site publicado no GitHub Pages](docs/evidencias/pages.png)
+
+### Aplicação publicada
+
+![Reserva Salas em funcionamento](docs/evidencias/aplicacao.png)
