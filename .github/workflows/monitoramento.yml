@@ -1,0 +1,21 @@
+name: Monitoramento do site
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar se o site responde
+        run: |
+          curl --fail --location --silent --show-error --max-time 20 \
+            --output /dev/null \
+            https://grazisarturi.github.io/reserva-salas-ic/
+          echo "O site respondeu com sucesso."
